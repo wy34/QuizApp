@@ -14,15 +14,17 @@ class ViewController: UIViewController, QuizProtocol {
     var questions = [Question]()
     var currentQuestionIndex = 0
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         model.delegate = self
         model.getQuestions()
     }
-
     
     // MARK: - QuizProtocol Methods
+    
     func questionsRetrieved(_ questions: [Question]) {
         print("questions recieved")
     }
