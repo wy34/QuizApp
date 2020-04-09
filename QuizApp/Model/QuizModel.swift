@@ -46,6 +46,7 @@ class QuizModel {
         }
     }
     
+    
     func getRemoteJsonFile() {
         
     }

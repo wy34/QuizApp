@@ -16,7 +16,7 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
     let model = QuizModel()
     var questions = [Question]()
     var currentQuestionIndex = 0
-    
+    var numCorrect = 0
     
     
     override func viewDidLoad() {
@@ -25,8 +25,21 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
         tableView.delegate = self
         tableView.dataSource = self
         
+        // dynamic row heights
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableView.automaticDimension
+        
         model.delegate = self
         model.getQuestions()
+    }
+    
+    func displayQuestion() {
+        // check if there are questions and currentQuestionIndex is not out of bounds
+        guard questions.count > 0 && currentQuestionIndex < questions.count else { return }
+        // display teh question text
+        questionLabel.text = questions[currentQuestionIndex].question
+        // reload table view
+        tableView.reloadData()
     }
     
     // MARK: - QuizProtocol Methods
@@ -34,8 +47,9 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
     func questionsRetrieved(_ questions: [Question]) {
         // get refercne to the questions
         self.questions = questions
-        // reload table view
-        tableView.reloadData()
+        
+        // display the question
+        displayQuestion()
     }
 
     
@@ -61,10 +75,33 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
         let label = cell.viewWithTag(1) as? UILabel
         
         if label != nil {
-            // se thte answer text
+            let question = questions[currentQuestionIndex]
+            
+            if question.answers != nil && indexPath.row < question.answers!.count {
+                // set the answer text
+                label!.text = question.answers![indexPath.row]
+            }
         }
         // return cell
         return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // user has tapped on a row and check if the right answer
+        let question = questions[currentQuestionIndex]
+        if question.correctAnswerIndex! == indexPath.row {
+            // user got it right
+            print("Correct")
+        } else {
+            // user got it wrong
+            print("Wrong")
+        }
+        
+        // increment the currentQuestionindex
+        currentQuestionIndex += 1
+        // display the next question
+        displayQuestion()
     }
 }
 
