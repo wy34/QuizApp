@@ -17,10 +17,14 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
     var questions = [Question]()
     var currentQuestionIndex = 0
     var numCorrect = 0
-    
+    var resultDialog: ResultViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // initialize teh result dialog
+        resultDialog = storyboard?.instantiateViewController(identifier: "ResultVC") as? ResultViewController
+        resultDialog?.modalPresentationStyle = .overCurrentContext
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -96,6 +100,11 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
         } else {
             // user got it wrong
             print("Wrong")
+        }
+        
+        // show the popup
+        if let resultDialog = resultDialog {
+            present(resultDialog, animated: true, completion: nil)
         }
         
         // increment the currentQuestionindex

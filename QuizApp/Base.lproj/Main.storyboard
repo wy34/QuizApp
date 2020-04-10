@@ -97,6 +97,84 @@
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="125.89285714285714"/>
         </scene>
+        <!--Result View Controller-->
+        <scene sceneID="Peh-M9-2Eq">
+            <objects>
+                <viewController storyboardIdentifier="ResultVC" id="TKE-WF-I2j" customClass="ResultViewController" customModule="QuizApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kaJ-3U-vpT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a8a-Ph-BZZ" userLabel="DimView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1f1-2N-4Cw" userLabel="DialogView">
+                                <rect key="frame" x="40" y="144" width="334" height="618"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YxH-Kb-di5">
+                                        <rect key="frame" x="50" y="50" width="234" height="518"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Kc-el-Gga">
+                                                <rect key="frame" x="83.5" y="0.0" width="67.5" height="172.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WU1-ii-hsG">
+                                                <rect key="frame" x="0.0" y="172.5" width="234" height="173"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ufu-kx-uHA">
+                                                <rect key="frame" x="0.0" y="345.5" width="234" height="172.5"/>
+                                                <state key="normal" title="Next"/>
+                                                <connections>
+                                                    <action selector="dismissTapped:" destination="TKE-WF-I2j" eventType="touchUpInside" id="MjF-V6-TJm"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Ufu-kx-uHA" firstAttribute="width" secondItem="YxH-Kb-di5" secondAttribute="width" id="EH7-Oq-Zlk"/>
+                                            <constraint firstItem="WU1-ii-hsG" firstAttribute="width" secondItem="YxH-Kb-di5" secondAttribute="width" id="K88-yf-gpS"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="YxH-Kb-di5" secondAttribute="bottom" constant="50" id="FRa-lv-y9D"/>
+                                    <constraint firstItem="YxH-Kb-di5" firstAttribute="leading" secondItem="1f1-2N-4Cw" secondAttribute="leading" constant="50" id="MvY-wd-eGm"/>
+                                    <constraint firstAttribute="trailing" secondItem="YxH-Kb-di5" secondAttribute="trailing" constant="50" id="h7m-51-dUC"/>
+                                    <constraint firstItem="YxH-Kb-di5" firstAttribute="top" secondItem="1f1-2N-4Cw" secondAttribute="top" constant="50" id="uvA-jc-5ni"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="a8a-Ph-BZZ" secondAttribute="bottom" id="4Fj-bO-4l6"/>
+                            <constraint firstItem="a8a-Ph-BZZ" firstAttribute="top" secondItem="kaJ-3U-vpT" secondAttribute="top" id="Kox-cQ-vTh"/>
+                            <constraint firstItem="1f1-2N-4Cw" firstAttribute="leading" secondItem="tkq-Pz-rT6" secondAttribute="leading" constant="40" id="Lob-CM-xUD"/>
+                            <constraint firstItem="tkq-Pz-rT6" firstAttribute="trailing" secondItem="1f1-2N-4Cw" secondAttribute="trailing" constant="40" id="WtI-mL-yXV"/>
+                            <constraint firstItem="1f1-2N-4Cw" firstAttribute="top" secondItem="tkq-Pz-rT6" secondAttribute="top" constant="100" id="e2f-YX-zhx"/>
+                            <constraint firstItem="tkq-Pz-rT6" firstAttribute="bottom" secondItem="1f1-2N-4Cw" secondAttribute="bottom" constant="100" id="gt9-sS-dV7"/>
+                            <constraint firstAttribute="trailing" secondItem="a8a-Ph-BZZ" secondAttribute="trailing" id="leT-Xq-7xA"/>
+                            <constraint firstItem="a8a-Ph-BZZ" firstAttribute="leading" secondItem="kaJ-3U-vpT" secondAttribute="leading" id="w4i-L8-12N"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tkq-Pz-rT6"/>
+                    </view>
+                    <connections>
+                        <outlet property="dialogView" destination="1f1-2N-4Cw" id="9z1-LH-Iuj"/>
+                        <outlet property="dimView" destination="a8a-Ph-BZZ" id="zjO-I6-F6H"/>
+                        <outlet property="dismissButton" destination="Ufu-kx-uHA" id="uT7-Qn-KDk"/>
+                        <outlet property="feedbackLabel" destination="WU1-ii-hsG" id="aeE-Du-abR"/>
+                        <outlet property="titleLabel" destination="7Kc-el-Gga" id="eiV-hB-r17"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="APh-I4-V1r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="819" y="125"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BackgroundImage" width="375" height="667"/>
