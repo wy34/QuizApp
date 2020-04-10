@@ -17,6 +17,7 @@
 		3D6C17BA243ED32200C37DA3 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6C17B9243ED32200C37DA3 /* QuizModel.swift */; };
 		3DDB17BC243FA637007D9A29 /* QuestionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DDB17BB243FA637007D9A29 /* QuestionData.json */; };
 		3DDB17E4243FEE18007D9A29 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB17E3243FEE18007D9A29 /* ResultViewController.swift */; };
+		3DDB17E624400295007D9A29 /* StateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB17E524400295007D9A29 /* StateManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		3D6C17B9243ED32200C37DA3 /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 		3DDB17BB243FA637007D9A29 /* QuestionData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = QuestionData.json; sourceTree = "<group>"; };
 		3DDB17E3243FEE18007D9A29 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		3DDB17E524400295007D9A29 /* StateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				3D6C17B0243ED25600C37DA3 /* Info.plist */,
 				3DDB17BB243FA637007D9A29 /* QuestionData.json */,
 				3D6C17B8243ED2B400C37DA3 /* Model */,
+				3DDB17E524400295007D9A29 /* StateManager.swift */,
 			);
 			path = QuizApp;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 				3D6C17A7243ED25100C37DA3 /* ViewController.swift in Sources */,
 				3D6C17B7243ED2AF00C37DA3 /* Question.swift in Sources */,
 				3D6C17A3243ED25100C37DA3 /* AppDelegate.swift in Sources */,
+				3DDB17E624400295007D9A29 /* StateManager.swift in Sources */,
 				3D6C17A5243ED25100C37DA3 /* SceneDelegate.swift in Sources */,
 				3D6C17BA243ED32200C37DA3 /* QuizModel.swift in Sources */,
 				3DDB17E4243FEE18007D9A29 /* ResultViewController.swift in Sources */,
