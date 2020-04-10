@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ResultViewControllerProtocol {
+    func dialogDismissed()
+}
+
 class ResultViewController: UIViewController {
 
     
@@ -21,12 +25,16 @@ class ResultViewController: UIViewController {
     var feedbackText = ""
     var buttonText = ""
     
-    
+    var delegate: ResultViewControllerProtocol?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        dialogView.layer.cornerRadius = 10
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         // now that the elements have loaded set the text
         titleLabel.text = titleText
         feedbackLabel.text = feedbackText
@@ -34,8 +42,10 @@ class ResultViewController: UIViewController {
     }
     
     
+    
     @IBAction func dismissTapped(_ sender: Any) {
         // dismiss the vc
+        dismiss(animated: true, completion: nil)
+        delegate?.dialogDismissed()
     }
-    
 }

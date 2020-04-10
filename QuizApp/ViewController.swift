@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UITableViewDelegate, ResultViewControllerProtocol {
 
     @IBOutlet var questionLabel: UILabel!
     @IBOutlet var tableView: UITableView!
@@ -19,12 +19,16 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
     var numCorrect = 0
     var resultDialog: ResultViewController?
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // initialize teh result dialog
         resultDialog = storyboard?.instantiateViewController(identifier: "ResultVC") as? ResultViewController
         resultDialog?.modalPresentationStyle = .overCurrentContext
+        resultDialog?.delegate = self
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -36,6 +40,7 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
         model.delegate = self
         model.getQuestions()
     }
+    
     
     func displayQuestion() {
         // check if there are questions and currentQuestionIndex is not out of bounds
@@ -92,25 +97,56 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var titleText = ""
         // user has tapped on a row and check if the right answer
         let question = questions[currentQuestionIndex]
         if question.correctAnswerIndex! == indexPath.row {
             // user got it right
             print("Correct")
+            numCorrect += 1
+            titleText = "Correct"
         } else {
             // user got it wrong
             print("Wrong")
+            titleText = "Wrong"
         }
         
         // show the popup
         if let resultDialog = resultDialog {
+            resultDialog.titleText = titleText
+            resultDialog.feedbackText = question.feedback!
+            resultDialog.buttonText = "Next"
             present(resultDialog, animated: true, completion: nil)
         }
-        
+    }
+    
+    
+    // MARK: - ResultViewControllerProtocol methods
+    
+    func dialogDismissed() {
         // increment the currentQuestionindex
         currentQuestionIndex += 1
-        // display the next question
-        displayQuestion()
+        
+        if currentQuestionIndex == questions.count {
+            // user has just answer last question
+            // show summary dialog
+            if let resultDialog = resultDialog {
+                resultDialog.titleText = "Summary"
+                resultDialog.feedbackText = "You got \(numCorrect) correct out of \(questions.count) questions."
+                resultDialog.buttonText = "Restart"
+                present(resultDialog, animated: true, completion: nil)
+            }
+        } else if currentQuestionIndex > questions.count {
+            // restart
+            numCorrect = 0
+            currentQuestionIndex = 0
+            displayQuestion()
+        } else if currentQuestionIndex < questions.count {
+            // more questions to show
+            
+            // display the next question
+            displayQuestion()
+        }
     }
 }
 
