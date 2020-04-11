@@ -76,7 +76,6 @@
 				3D6C17B0243ED25600C37DA3 /* Info.plist */,
 				3DDB17BB243FA637007D9A29 /* QuestionData.json */,
 				3D6C17B8243ED2B400C37DA3 /* Model */,
-				3DDB17E524400295007D9A29 /* StateManager.swift */,
 			);
 			path = QuizApp;
 			sourceTree = "<group>";
@@ -84,6 +83,7 @@
 		3D6C17B8243ED2B400C37DA3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3DDB17E524400295007D9A29 /* StateManager.swift */,
 				3D6C17B6243ED2AF00C37DA3 /* Question.swift */,
 				3D6C17B9243ED32200C37DA3 /* QuizModel.swift */,
 			);

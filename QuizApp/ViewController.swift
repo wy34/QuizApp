@@ -12,6 +12,9 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
 
     @IBOutlet var questionLabel: UILabel!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var stackViewTrailingContraint: NSLayoutConstraint!
+    @IBOutlet var stackViewLeadingContraint: NSLayoutConstraint!
+    @IBOutlet var rootStackView: UIStackView!
     
     let model = QuizModel()
     var questions = [Question]()
@@ -41,6 +44,34 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
         model.getQuestions()
     }
     
+    func slideInQuestion() {
+        // set the initial state
+        stackViewLeadingContraint.constant = 1000
+        stackViewTrailingContraint.constant = -1000
+        rootStackView.alpha = 0
+        // animate to end state
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+            self.stackViewLeadingContraint.constant = 0
+            self.stackViewTrailingContraint.constant = 0
+            self.rootStackView.alpha = 1
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    func slideOutQuestion() {
+        // set the initial state
+        stackViewTrailingContraint.constant = 0
+        stackViewLeadingContraint.constant = 0
+        rootStackView.alpha = 1
+        view.layoutIfNeeded()
+        // animate to end state
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+            self.stackViewLeadingContraint.constant = -1000
+            self.stackViewTrailingContraint.constant = 1000
+            self.rootStackView.alpha = 0
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
     
     func displayQuestion() {
         // check if there are questions and currentQuestionIndex is not out of bounds
@@ -49,6 +80,8 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
         questionLabel.text = questions[currentQuestionIndex].question
         // reload table view
         tableView.reloadData()
+        // slide in question
+        slideInQuestion()
     }
     
     // MARK: - QuizProtocol Methods
@@ -126,6 +159,11 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
             titleText = "Wrong"
         }
         
+        //slide out question
+        DispatchQueue.main.async {
+            self.slideOutQuestion()
+        }
+        
         // show the popup
         if let resultDialog = resultDialog {
             resultDialog.titleText = titleText
@@ -166,7 +204,7 @@ class ViewController: UIViewController, QuizProtocol, UITableViewDataSource, UIT
             
             // display the next question
             displayQuestion()
-            
+        
             // save state
             StateManager.saveState(numCorrect: numCorrect, questionIndex: currentQuestionIndex)
         }
